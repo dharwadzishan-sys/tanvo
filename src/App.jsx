@@ -120,34 +120,18 @@ export default function App() {
       {!subdomain && <Preloader />}
       <ScrollManager />
       <Suspense fallback={<RouteFallback />}>
-        {subdomain === 'admin' ? (
-          // Subdomain: admin.tanvo.tech or admin.localhost or ?app=admin
-          <Routes>
-            <Route path="/" element={<AdminPage />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        ) : subdomain === 'portal' ? (
-          // Subdomain: portal.tanvo.tech or portal.localhost or ?app=portal
-          <Routes>
-            <Route path="/" element={<PortalPage />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        ) : (
-          // Main Domain (tanvo.tech) — Public marketing site with Smart Redirects
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/privacy" element={<LegalPage variant="privacy" />} />
-            <Route path="/terms" element={<LegalPage variant="terms" />} />
-            
-            {/* Smart Subdomain Redirects */}
-            <Route path="/admin" element={<SmartSubdomainRedirect targetSubdomain="admin" />} />
-            <Route path="/portal" element={<SmartSubdomainRedirect targetSubdomain="portal" />} />
-            <Route path="/client" element={<SmartSubdomainRedirect targetSubdomain="portal" />} />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/privacy" element={<LegalPage variant="privacy" />} />
+          <Route path="/terms" element={<LegalPage variant="terms" />} />
+          
+          <Route path="/admin/*" element={<AdminPage />} />
+          <Route path="/portal/*" element={<PortalPage />} />
+          <Route path="/client/*" element={<PortalPage />} />
 
-            {/* Seamless Auto-Redirect to Homepage (Zero 404 screens) */}
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        )}
+          {/* Seamless Auto-Redirect to Homepage (Zero 404 screens) */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
       </Suspense>
     </ErrorBoundary>
   );
