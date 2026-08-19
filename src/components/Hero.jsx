@@ -242,11 +242,11 @@ export default function Hero() {
         className="pointer-events-none absolute inset-0 z-0 opacity-50 bg-[linear-gradient(rgb(255_255_255/0.015)_1px,transparent_1px),linear-gradient(90deg,rgb(255_255_255/0.015)_1px,transparent_1px)] bg-[size:40px_40px]"
       />
 
-      {/* Oversized brand mark as a background texture. Barely-there by
+      {/* Oversized brand mark as a centered background texture. Barely-there by
           design — it should register as depth, not as a second logo. */}
       <div
         aria-hidden="true"
-        className="logo-watermark animate-drift right-[-8%] top-1/2 hidden h-[min(70vh,780px)] w-[min(70vh,780px)] -translate-y-1/2 lg:block"
+        className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-[min(90vw,900px)] w-[min(90vw,900px)] -translate-x-1/2 -translate-y-1/2 opacity-20 mix-blend-screen animate-drift"
       >
         <Logo className="h-full w-full" showText={false} />
       </div>
